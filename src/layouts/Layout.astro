@@ -1,5 +1,6 @@
 ---
 import Navbar from '../components/Navbar.astro'
+import { SETTINGS } from '../constants/settings.constants'
 import '../styles/animations.scss'
 import '../styles/global.scss'
 ---
@@ -15,30 +16,29 @@ import '../styles/global.scss'
     <link
       rel='icon'
       type='image/svg+xml'
-      href='/favicon.svg'
+      href='/favicon.png'
     />
     <meta
       name='generator'
       content={Astro.generator}
     />
-    <title>Hector Tamayo</title>
+    <title>Nuba Projects</title>
     <meta
       name='description'
-      content={`I'm a Web Developer from Latam focused on crafting clean & user-friendly experiences, I'm
-        passionate about building excellent software that improves the lives of those around me.`}
+      content={`Somos una empresa especializada en el desarrollo integral de proyectos arquitectónicos e ingenieriles, con un enfoque multidisciplinario que une creatividad, precisión técnica y transformación digital a través de la metodología BIM. Nuestra visión es liderar la evolución del sector AEC (Arquitectura, Ingeniería y Construcción) en Latinoamérica, ofreciendo soluciones que integran diseño, tecnología y formación profesional.`}
     />
     <!-- OPEN GRAPH TAGS -->
     <meta
       property='og:title'
-      content='Hector Tamayo | Web Developer'
+      content='Nuba Projects'
     />
     <meta
       property='og:url'
-      content='https://hector-tamayo.netlify.app'
+      content='https://nuba.pro'
     />
     <meta
       property='og:image'
-      content='https://hector-tamayo.netlify.app/favicon.svg'
+      content='https://nuba.pro/favicon.png'
     />
     <meta
       property='og:type'
@@ -46,14 +46,14 @@ import '../styles/global.scss'
     />
     <meta
       property='og:site_name'
-      content='Hector Tamayo | Web Developer'
+      content='Nuba Projects'
     />
   </head>
 
   <body>
     <div id='root'>
       <slot />
-      <Navbar />
+      {!SETTINGS.MAINTENANCE_MODE && <Navbar />}
     </div>
 
     <div id='modal'></div>
