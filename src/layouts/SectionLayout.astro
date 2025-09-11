@@ -13,11 +13,10 @@ const lastWord = titleWords.at(-1)
 titleWords.pop()
 ---
 
-<div class={clsx(styles.container, 'contentAnimation')}>
+<div class={styles.container}>
   <div class={styles.titleWrapper}>
     <div class={styles.titleContainer}>
       <h1>{titleWords.join(' ')} <span>{lastWord}</span></h1>
-      <span>{title} </span>
     </div>
   </div>
 

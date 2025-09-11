@@ -1,0 +1,88 @@
+---
+import clsx from 'clsx'
+import SectionTitle from '../../components/section-title.astro'
+import Layout from '../../layouts/Layout.astro'
+import SectionLayout from '../../layouts/SectionLayout.astro'
+import styles from './about.module.scss'
+import Card from './card.astro'
+import Experience from './experience.astro'
+import PersonalInfo from './personal-info.astro'
+import Section from './section.astro'
+import Skills from './skills.astro'
+
+const ITEMS = [
+  {
+    title: 'Innovación',
+    description: 'Aplicamos metodologías BIM y herramientas digitales de vanguardia.',
+    icon: '',
+  },
+  {
+    title: 'Calidad',
+    description: 'Desarrollamos documentación precisa y proyectos bien coordinados.',
+    icon: '',
+  },
+  {
+    title: 'Confianza',
+    description: 'Construimos relaciones duraderas con nuestros clientes y aliados.',
+    icon: '',
+  },
+  {
+    title: 'Integración',
+    description: 'Unimos arquitectura, ingeniería e interiorismo en un solo flujo de trabajo.',
+    icon: '',
+  },
+]
+---
+
+<section
+  class={clsx(styles.about, 'section-padding mobile-scroll-margin')}
+  id='section-about'
+>
+  <div class='container'>
+    <div
+      class={clsx(styles.mainInfo, 'fade-in-bottom-hidden')}
+      id='main-info'
+    >
+      <SectionTitle title='Sobre Nosotros' />
+      <p>
+        Con más de 5 años de experiencia y más de 200.000 m² diseñados en proyectos residenciales,
+        comerciales e industriales, Nuba Projects se ha consolidado como una firma especializada en
+        el desarrollo de proyectos multidisciplinarios con alcance internacional.
+        <br /><br />
+        Nuestra trayectoria incluye el diseño y coordinación de proyectos en distintos países, siempre
+        bajo un enfoque que combina arquitectura, ingeniería e innovación tecnológica.
+      </p>
+    </div>
+
+    <ul
+      class={styles.items}
+      id='items'
+    >
+      {ITEMS.map(item => <Card item={item} />)}
+    </ul>
+  </div>
+</section>
+
+<script>
+  const info = document.getElementById('main-info')
+  const items = document.getElementById('items') || { children: [] }
+
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!info) return
+    if (entry.isIntersecting) {
+      info.classList.add('fade-in-bottom')
+    }
+  })
+  if (info) observer.observe(info)
+
+  for (const element of items?.children) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!element) return
+      if (entry.isIntersecting) {
+        element.classList.add('fade-in-bottom')
+        element.classList.remove('fade-in-bottom-hidden')
+      }
+    })
+    if (element) observer.observe(element)
+  }
+</script>

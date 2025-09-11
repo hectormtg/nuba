@@ -1,0 +1,34 @@
+---
+import clsx from 'clsx'
+import styles from './projects.module.scss'
+import SectionTitle from '../../components/section-title.astro'
+---
+
+<section
+  class={clsx(styles.about, 'section-padding mobile-scroll-margin')}
+  id='section-projects'
+>
+  <div class='container'>
+    <div
+      class={clsx(styles.mainInfo, 'fade-in-bottom-hidden')}
+      id='main-info'
+    >
+      <SectionTitle title='Nuestros Proyectos' />
+      <p>
+        Con más de 5 años de experiencia y más de 200.000 m² diseñados en proyectos residenciales,
+        comerciales e industriales, Nuba Projects se ha consolidado como una firma especializada en
+        el desarrollo de proyectos multidisciplinarios con alcance internacional.
+        <br /><br />
+        Nuestra trayectoria incluye el diseño y coordinación de proyectos en distintos países, siempre
+        bajo un enfoque que combina arquitectura, ingeniería e innovación tecnológica.
+      </p>
+    </div>
+
+    <!-- <ul
+      class={styles.items}
+      id='items'
+    >
+      {ITEMS.map(item => <Card item={item} />)}
+    </ul> -->
+  </div>
+</section>

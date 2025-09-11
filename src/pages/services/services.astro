@@ -1,0 +1,81 @@
+---
+import clsx from 'clsx'
+import SectionTitle from '../../components/section-title.astro'
+import type { ServiceCard } from '../../types/services.types'
+import Card from './card.astro'
+import styles from './services.module.scss'
+
+const CARDS: Array<ServiceCard> = [
+  {
+    title: 'Proyectos multidisciplinarios',
+    description: 'Diseño arquitectónico, ingeniería estructural e instalaciones.',
+    icon: 'toolbox-icon',
+  },
+  {
+    title: 'Servicios BIM',
+    description: 'Modelado, coordinación, documentación y consultoría.',
+    icon: 'diagram-icon',
+  },
+  {
+    title: 'Formación especializada',
+    description: 'Cursos y programas de implementación BIM para empresas y profesionales.',
+    icon: 'graduation-cap-icon',
+  },
+]
+---
+
+<section
+  class={clsx(styles.services, 'section-padding mobile-scroll-margin')}
+  id='section-services'
+>
+  <div class='container'>
+    <div
+      id='services'
+      class={clsx(styles.info, 'fade-in-bottom-hidden')}
+    >
+      <SectionTitle
+        title='Nuestros Servicios'
+        isDark
+      />
+
+      <p>
+        En Nuba Projects reunimos arquitectura, ingeniería estructural, instalaciones y diseño de
+        interiores bajo un mismo equipo. A través de metodologías BIM, logramos proyectos
+        coordinados, eficientes y con documentación de calidad que reduce errores y maximiza
+        resultados.
+      </p>
+    </div>
+
+    <div
+      class={styles.cards}
+      id='cards'
+    >
+      {CARDS.map(card => <Card card={card} />)}
+    </div>
+  </div>
+</section>
+
+<script>
+  const container = document.getElementById('services')
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!container) return
+    if (entry.isIntersecting) {
+      container.classList.add('fade-in-bottom')
+    }
+  })
+  if (container) observer.observe(container)
+
+  const cards = document.getElementById('cards') || { children: [] }
+  for (const element of cards.children) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!element) return
+        if (entry.isIntersecting) {
+          element.classList.add('fade-in-left')
+        }
+      },
+      { rootMargin: '0px 0px -200px 0px' }
+    )
+    if (element) observer.observe(element)
+  }
+</script>

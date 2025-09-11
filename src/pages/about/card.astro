@@ -1,20 +1,21 @@
 ---
-import styles from './personal-info.module.scss'
+import clsx from 'clsx'
+import styles from './about.module.scss'
 
 interface Item {
-  label: string
-  text: string
+  title: string
+  description: string
+  icon: string
 }
 
 interface Props {
   item: Item
 }
 
-const { item = { label: '', text: '' } } = Astro.props
-console.log('Item: ', item)
+const { item = { title: '', description: '', icon: '' } } = Astro.props
 ---
 
-<li class={styles.card}>
-  <span>{item.text}</span>
-  <p>{item.label}</p>
+<li class={clsx(styles.card, 'fade-in-bottom-hidden')}>
+  <span>{item.title}</span>
+  <p>{item.description}</p>
 </li>

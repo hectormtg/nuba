@@ -1,3 +1,4 @@
 export const STYLE_DEFAULTS = {
   MODAL_WIDTH: 600,
+  NAVBAR_SIZE: 60,
 }

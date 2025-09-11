@@ -1,8 +1,11 @@
 ---
-import Navbar from '../components/Navbar.astro'
+// import Navbar from '../components/navbar.astro'
+import Navbar from '../components/navbar-react'
 import { SETTINGS } from '../constants/settings.constants'
 import '../styles/animations.scss'
 import '../styles/global.scss'
+
+const { pathname } = Astro.url
 ---
 
 <!doctype html>
@@ -25,7 +28,7 @@ import '../styles/global.scss'
     <title>Nuba Projects</title>
     <meta
       name='description'
-      content={`Somos una empresa especializada en el desarrollo integral de proyectos arquitectónicos e ingenieriles, con un enfoque multidisciplinario que une creatividad, precisión técnica y transformación digital a través de la metodología BIM. Nuestra visión es liderar la evolución del sector AEC (Arquitectura, Ingeniería y Construcción) en Latinoamérica, ofreciendo soluciones que integran diseño, tecnología y formación profesional.`}
+      content='Especialistas en el diseño y ejecución de proyectos multidisciplinarios con innovación y precisión BIM.'
     />
     <!-- OPEN GRAPH TAGS -->
     <meta
@@ -52,8 +55,11 @@ import '../styles/global.scss'
 
   <body>
     <div id='root'>
+      <Navbar
+        pathname={pathname}
+        client:only
+      />
       <slot />
-      {!SETTINGS.MAINTENANCE_MODE && <Navbar />}
     </div>
 
     <div id='modal'></div>

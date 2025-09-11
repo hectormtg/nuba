@@ -1,0 +1,74 @@
+---
+import clsx from 'clsx'
+import styles from './footer.module.scss'
+import { Icon as AstroIcon } from 'astro-icon/components'
+import { Tooltip } from '../../components/ui/tooltip'
+
+const DETAILS = [
+  // {
+  //   icon: 'mobile-screen-icon',
+  //   text: '+1 (305) 1234-5678',
+  // },
+  {
+    icon: 'envelope-icon',
+    text: 'hello@nuba.pro',
+    href: 'mailto:hello@nuba.pro',
+  },
+  {
+    icon: 'location-icon',
+    text: 'Valencia, Venezuela',
+    href: 'https://maps.app.goo.gl/jw49x7dEh5Hk9d6j9',
+  },
+]
+---
+
+<footer class={clsx(styles.footer, 'section-padding')}>
+  <div class='container'>
+    <div class={styles.info}>
+      <div class={styles.logoContainer}>
+        <AstroIcon name='logo' />
+        <span>Nuba Projects</span>
+      </div>
+
+      <div class={styles.socialMediaContainer}>
+        <Tooltip
+          content='Linkedin'
+          client:load
+        >
+          <a
+            href='https://linkedin.com/company/nubaprojects'
+            target='_blank'
+          >
+            <AstroIcon name='linkedin-icon' />
+          </a>
+        </Tooltip>
+        <Tooltip
+          content='Instagram'
+          client:load
+        >
+          <a
+            href='https://instagram.com/nubaprojects'
+            target='_blank'
+          >
+            <AstroIcon name='instagram-icon' />
+          </a>
+        </Tooltip>
+      </div>
+
+      <div class={styles.contactDetails}>
+        {
+          DETAILS.map(detail => (
+            <a
+              href={detail.href}
+              type='button'
+              target='_blank'
+            >
+              <AstroIcon name={detail.icon} />
+              {detail.text}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</footer>

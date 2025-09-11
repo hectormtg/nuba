@@ -1,0 +1,98 @@
+@use '../../styles/breakpoints' as bp;
+
+.footer {
+  background-color: var(--color-background);
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logoContainer {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+
+  svg {
+    height: 60px;
+    width: auto;
+  }
+
+  span {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+
+.socialMediaContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-gray-light);
+    border-radius: 100%;
+    padding: 0.5rem;
+    aspect-ratio: 1;
+    fill: var(--color-text);
+    color: var(--color-text) !important;
+    transition: background-color 0.2s;
+    font-size: 1.5rem;
+
+    &:hover {
+      background-color: var(--color-accent);
+    }
+  }
+}
+
+.contactDetails {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  > * {
+    // Detail
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+
+    svg {
+      height: 20px;
+      width: auto;
+    }
+  }
+}
+
+@media only screen and (max-width: bp.$sm) {
+  .logoContainer {
+    svg {
+      height: 50px;
+    }
+    span {
+      font-size: 2rem;
+    }
+  }
+  .contactDetails {
+    flex-direction: column;
+  }
+}

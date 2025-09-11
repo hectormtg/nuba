@@ -1,0 +1,44 @@
+---
+import clsx from 'clsx'
+import styles from './hero.module.scss'
+import Button from '../../components/ui/button'
+import arrowIcon from '../../icons/arrow-right-icon.svg'
+---
+
+<main class={styles.main}>
+  <section class={clsx(styles.hero, 'fade-in-bottom')}>
+    <h1>Nuba Projects</h1>
+
+    <p>
+      Especialistas en el diseño y ejecución de proyectos multidisciplinarios con innovación y
+      precisión BIM.
+    </p>
+    <Button
+      endIconSrc={arrowIcon.src}
+      style={{
+        fontSize: '1rem',
+      }}
+      id='contact-button'
+      client:load
+    >
+      Solicita una reunión
+    </Button>
+  </section>
+
+  <div class={styles.bgMedia}></div>
+</main>
+
+<script>
+  import { STYLE_DEFAULTS } from '../../constants/styles.constants'
+
+  const buttonElement = document.getElementById('contact-button')
+  buttonElement?.addEventListener('click', () => {
+    const contactSection = document.getElementById('section-contact')
+    if (!contactSection) return
+    const rects = contactSection.getBoundingClientRect()
+    window.scrollTo({
+      top: rects.top + window.scrollY - STYLE_DEFAULTS.NAVBAR_SIZE,
+      behavior: 'smooth',
+    })
+  })
+</script>

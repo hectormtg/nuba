@@ -1,115 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import About from './about/about.astro'
+import Services from './services/services.astro'
+import Hero from './hero/hero.astro'
+import Contact from './contact/contact.astro'
+import Footer from './footer/footer.astro'
 ---
 
 <Layout>
-  <main class='construction-page'>
-    <!-- Animated background elements -->
-    <div class='bg-shapes'>
-      <div class='shape shape-1'></div>
-      <div class='shape shape-2'></div>
-      <div class='shape shape-3'></div>
-      <!-- <div class='gear gear-1'>⚙️</div> -->
-      <!-- <div class='gear gear-2'>🔧</div> -->
-    </div>
-
-    <!-- Main content -->
-    <div class='content-container'>
-      <div class='construction-icon'>
-        <div class='hard-hat'>🚧</div>
-      </div>
-
-      <h1 class='main-title'>En construcción</h1>
-      <!-- <p class='subtitle'>We're building something amazing just for you. Stay tuned!</p> -->
-
-      <!-- Email signup form -->
-      <!-- <form
-        class='signup-form'
-        id='emailForm'
-      >
-        <div class='input-group'>
-          <input
-            type='email'
-            placeholder='Enter your email address'
-            required
-            class='email-input'
-            id='emailInput'
-          />
-          <button
-            type='submit'
-            class='subscribe-btn'
-          >
-            <span class='btn-text'>Subscribe</span>
-            <div
-              class='btn-loader'
-              style='display: none;'
-            >
-              <div class='spinner'></div>
-            </div>
-          </button>
-        </div>
-        <p class='form-note'>Leave your email to be the first to know when we launch!</p>
-      </form> -->
-
-      <!-- Progress indicator -->
-      <!-- <div class='progress-section'>
-        <p class='progress-text'>Progress</p>
-        <div class='progress-bar'>
-          <div class='progress-fill'></div>
-        </div>
-        <p class='progress-percentage'>73%</p>
-      </div> -->
-    </div>
-  </main>
+  <Hero />
+  <About />
+  <Services />
+  <Contact />
+  <Footer />
 </Layout>
-
-<style lang='scss'>
-  @import './maintenance.module.scss';
-</style>
-
-<script>
-  // Client-side JavaScript for form interaction
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('emailForm')
-    const emailInput = document.getElementById('emailInput')
-    const subscribeBtn = form?.querySelector('.subscribe-btn')
-    const btnText = subscribeBtn?.querySelector('.btn-text')
-    const btnLoader = subscribeBtn?.querySelector('.btn-loader')
-
-    // Form submission handler
-    form?.addEventListener('submit', async function (e) {
-      e.preventDefault()
-
-      // Show loading state
-      btnText.style.display = 'none'
-      btnLoader.style.display = 'block'
-      subscribeBtn.disabled = true
-
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-
-      // Show success state
-      btnText.textContent = 'Subscribed!'
-      btnText.style.display = 'block'
-      btnLoader.style.display = 'none'
-      subscribeBtn.classList.add('success')
-      emailInput.value = ''
-
-      // Reset after 3 seconds
-      setTimeout(() => {
-        btnText.textContent = 'Subscribe'
-        subscribeBtn.classList.remove('success')
-        subscribeBtn.disabled = false
-      }, 3000)
-    })
-
-    // Input focus effects
-    emailInput.addEventListener('focus', function () {
-      this.parentElement.classList.add('focused')
-    })
-
-    emailInput.addEventListener('blur', function () {
-      this.parentElement.classList.remove('focused')
-    })
-  })
-</script>

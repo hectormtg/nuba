@@ -1,0 +1,59 @@
+---
+import styles from './contact.module.scss'
+import SectionTitle from '../../components/section-title.astro'
+import clsx from 'clsx'
+import ContactForm from './contact-form'
+---
+
+<section
+  class={clsx(styles.contact, 'section-padding mobile-scroll-margin')}
+  id='section-contact'
+>
+  <div
+    class='container fade-in-bottom-hidden'
+    id='contact'
+  >
+    <section class={styles.info}>
+      <SectionTitle title='Contáctanos' />
+      <p>
+        ¿Listo para llevar tu proyecto al siguiente nivel?
+        <br />
+        Agenda una reunión con nuestro equipo.
+      </p>
+    </section>
+
+    <ContactForm
+      className={styles.form}
+      client:load
+    />
+  </div>
+</section>
+
+<script>
+  const container = document.getElementById('contact')
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!container) return
+    if (entry.isIntersecting) {
+      container.classList.add('fade-in-bottom')
+    }
+  })
+  if (container) observer.observe(container)
+
+  const button = document.getElementById('submit-button')
+  button?.addEventListener('click', async e => {
+    e.preventDefault()
+    try {
+      await fetch('/api/email', {
+        method: 'post',
+        body: JSON.stringify({
+          name: 'Hector',
+          email: 'jeje@mail.com',
+          subject: 'Testing',
+          message: 'Hellooooo testing',
+        }),
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  })
+</script>

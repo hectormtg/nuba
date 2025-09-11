@@ -1,0 +1,21 @@
+---
+import clsx from 'clsx'
+import styles from './section-title.module.scss'
+
+interface Props {
+  title: string
+  class?: string
+  isDark?: boolean
+}
+
+const { title, class: _class, isDark } = Astro.props
+
+const titleWords = title.split(' ')
+const lastWord = titleWords.at(-1)
+titleWords.pop()
+---
+
+<h2 class={clsx(styles.title, isDark && styles.dark, _class)}>
+  {titleWords.join(' ')}
+  <span>{lastWord}</span>
+</h2>

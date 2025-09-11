@@ -2,11 +2,9 @@ import clsx from 'clsx'
 import type { HTMLAttributes, InputHTMLAttributes } from 'preact/compat'
 import styles from './input.module.scss'
 
-interface BaseProps {
+interface Props extends InputHTMLAttributes {
   multiline?: boolean
 }
-
-type Props = BaseProps & InputHTMLAttributes
 
 const Input = ({ multiline, ...props }: Props) => {
   if (multiline) {

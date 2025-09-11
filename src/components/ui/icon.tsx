@@ -1,6 +1,15 @@
-const Icon = ({ src }: { src: string }) => {
+interface Props {
+  src: string
+  className?: string
+  onClick?: () => void
+}
+
+const Icon = ({ src, className, onClick }: Props) => {
   return (
-    <svg>
+    <svg
+      className={className}
+      onClick={onClick}
+    >
       <use href={src} />
     </svg>
   )

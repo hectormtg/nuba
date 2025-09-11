@@ -1,0 +1,27 @@
+@use '../styles/breakpoints' as bp;
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+
+  span {
+    color: var(--color-accent);
+    background-color: hsl(from var(--color-accent) h s calc(l + 30));
+    padding: 2px 12px;
+    border-radius: 6px;
+  }
+}
+
+.dark {
+  span {
+    background-color: hsl(from var(--color-accent) h s calc(l - 10));
+    color: inherit;
+  }
+}
+
+@media only screen and (max-width: bp.$sm) {
+  .title {
+    font-size: 2rem;
+  }
+}

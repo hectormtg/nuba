@@ -1,14 +1,16 @@
 ---
 import styles from './navbar.module.scss'
-import { Icon } from 'astro-icon/components'
 import clsx from 'clsx'
 import { getPathnameRegex } from '../utils/helpers'
+import logo from '../assets/logo.svg'
+import Icon from './ui/icon'
+import { Icon as AstroIcon } from 'astro-icon/components'
 
 const OPTIONS = [
-  { title: 'Home', path: '/', icon: 'home-icon' },
-  { title: 'About', path: '/about', icon: 'user-icon' },
-  { title: 'Portfolio', path: '/portfolio', icon: 'portfolio-icon' },
-  { title: 'Contact', path: '/contact', icon: 'message-icon' },
+  // { title: 'Home', elementId: '/', icon: 'home-icon' },
+  { title: 'Nosotros', elementId: 'about', icon: 'user-icon' },
+  { title: 'Servicios', elementId: 'services', icon: 'portfolio-icon' },
+  { title: 'Contacto', elementId: 'contact', icon: 'message-icon' },
 ]
 
 const { pathname } = Astro.url
@@ -16,34 +18,68 @@ const { pathname } = Astro.url
 const regex = getPathnameRegex(pathname)
 ---
 
-<div class={styles.wrapper}>
-  <navbar class={styles.navbar}>
-    {
-      OPTIONS.map(option => (
-        <a
-          href={option.path}
-          class={clsx(styles.option, regex.test(option.path) && styles.active)}
-          onclick='handleClick(option.path)'
-          id='navbar-link'
-          type='button'
-        >
-          <Icon name={option.icon} />
-          <h2 id={styles.title}>{option.title}</h2>
-        </a>
-      ))
-    }
-  </navbar>
+<div
+  class={styles.wrapper}
+  id='navbar'
+>
+  <nav class={styles.navbar}>
+    <Icon
+      src={logo.src}
+      className={styles.logo}
+    />
+    <div class={styles.options}>
+      {
+        OPTIONS.map(option => (
+          <span
+            class={clsx(styles.option, regex.test(option.elementId) && styles.active)}
+            id='navbar-link'
+            data-section-id={option.elementId}
+          >
+            {option.title}
+          </span>
+        ))
+      }
+    </div>
+    <AstroIcon
+      name='bars-icon'
+      class={styles.drawerButton}
+    />
+  </nav>
 </div>
+<div id='sentinel'></div>
 
 <script>
-  import { getPathnameRegex } from '../utils/helpers'
+  // import { getPathnameRegex } from '../utils/helpers'
 
-  const anchors = document.querySelectorAll('a#navbar-link')
-  const regex = getPathnameRegex(window.location.pathname)
-  anchors.forEach(anchor =>
-    anchor.addEventListener('click', e => {
-      const isMatch = regex.test(anchor.getAttribute('href') as string)
-      if (isMatch) e.preventDefault()
+  const options = document.querySelectorAll('span#navbar-link')
+  // const regex = getPathnameRegex(window.location.pathname)
+  options.forEach(option =>
+    option.addEventListener('click', () => {
+      try {
+        const sectionId = option.getAttribute('data-section-id') as string
+        console.log('sectionId: ', sectionId)
+        // const isMatch = regex.test(href)
+        const section = document.getElementById(`section-${sectionId}`)
+        console.log('Section: ', section)
+        if (!section) return
+        section.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      } catch (err) {
+        console.error(err)
+      }
     })
   )
+
+  const navbar = document.getElementById('navbar')
+  const sentinel = document.getElementById('sentinel')
+
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!navbar) return
+    if (entry.isIntersecting) {
+      navbar.classList.remove('scrolled')
+    } else {
+      navbar.classList.add('scrolled')
+    }
+  })
+
+  if (sentinel) observer.observe(sentinel)
 </script>

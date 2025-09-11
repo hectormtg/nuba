@@ -2,96 +2,77 @@
 
 .wrapper {
   position: fixed;
-  inset: 0 var(--navbar-offset) 0 auto;
+  inset: 0 0 auto;
   display: flex;
   align-items: center;
+  z-index: 1100;
+  transition:
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  user-select: none;
 }
 
 .navbar {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: var(--navbar-width);
+  justify-content: space-between;
+  height: var(--navbar-size);
+  width: 100%;
+  max-width: 1140px;
+  margin: auto;
+  padding: 0 2rem;
 }
 
-.option {
+.logo {
+  height: 70%;
+  width: 42px;
+  position: relative;
+  left: -9px;
+}
+
+.options {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1;
-  width: 100%;
-  border-radius: 100%;
-  background-color: var(--color-gray-light);
-  transition: background-color 0.3s;
-  position: relative;
+  gap: 4rem;
+}
+
+.option {
+  transition: color 0.3s;
+  color: var(--color-text);
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
 
   &:hover {
-    background-color: var(--color-accent);
-    #title {
-      right: 27px;
-      opacity: 1;
-      border-radius: 50px 0 0 50px;
-    }
-  }
-
-  svg {
-    color: var(--color-text);
-    fill: var(--color-text);
-    height: 16px;
-  }
-
-  #title {
-    position: absolute;
-    background-color: var(--color-accent);
-    color: var(--color-text);
-    font-size: 1rem;
-    inset: 0 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    padding: 0 1.5rem 0 1.5rem;
-    border-radius: 50px;
-    z-index: -1;
-    text-transform: uppercase;
-    font-weight: 500;
-    width: max-content;
-
-    // Animation
-    transition:
-      border-radius 0.3s ease,
-      inset 0.3s ease,
-      opacity 0.3s ease;
-    opacity: 0;
+    color: var(--color-accent);
   }
 }
 
 .active {
-  background-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
+}
+
+.drawerButton {
+  display: none;
+  height: 55%;
+  width: 30px;
+  position: relative;
+  right: -5px;
+  fill: var(--color-text);
 }
 
 @media only screen and (max-width: bp.$sm) {
-  .wrapper {
-    inset: auto 0 0;
-  }
-
   .navbar {
-    flex-direction: row;
-    justify-content: space-evenly;
-    gap: 8px;
-    width: 100%;
-    background-color: var(--color-gray);
-    height: var(--mobile-navbar-height);
+    padding: 0 1rem;
   }
 
   .option {
-    background-color: hsl(from var(--color-gray) h s calc(l + 20));
-    width: auto;
-    height: 73%;
+    display: none;
+  }
 
-    svg {
-      height: 18px;
-      width: auto;
-    }
+  .drawerButton {
+    display: inline;
   }
 }

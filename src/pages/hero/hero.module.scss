@@ -1,0 +1,106 @@
+@use '../../styles/breakpoints' as bp;
+
+$bp-sm: 700px;
+
+.main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 5rem;
+  gap: 3rem;
+  flex-grow: 1;
+  position: relative;
+}
+
+.bgMedia {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  background-image: url('../../assets/hero-bg.webp');
+  background-size: cover;
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+  width: clamp(575px, 40%, 775px);
+  margin: auto;
+  min-height: 100vh;
+  z-index: 1;
+  animation-delay: 0.6s;
+
+  h1 {
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text);
+    position: relative;
+    line-height: 1.2;
+    font-weight: bold;
+
+    span {
+      color: var(--color-text);
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+}
+
+@media only screen and (min-width: bp.$lg) {
+  .main {
+    gap: 4rem;
+  }
+}
+
+@media only screen and (max-width: bp.$sm) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1rem;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .hero {
+    align-items: center;
+    margin: 0;
+    width: 100%;
+
+    h1 {
+      padding: 0;
+      text-align: center;
+      font-size: 4rem;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (max-width: bp.$xs) {
+  .hero {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}

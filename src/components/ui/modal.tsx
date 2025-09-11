@@ -7,8 +7,8 @@ import clsx from 'clsx'
 import { createPortal } from 'preact/compat'
 
 export interface ModalProps {
-  id: string
-  title: string
+  id?: string
+  title?: string
   isOpen: boolean
   onClose: () => void
   size?: 'small' | 'medium' | 'large'
@@ -144,8 +144,12 @@ export function Modal({
       id={id}
       role='dialog'
       aria-modal='true'
-      aria-labelledby={`${id}-title`}
-      aria-describedby={`${id}-content`}
+      {...(id
+        ? {
+            'aria-labelledby': `${id}-title`,
+            'aria-describedby': `${id}-content`,
+          }
+        : {})}
       ref={modalRef}
     >
       <div
@@ -155,13 +159,22 @@ export function Modal({
 
       <div className={styles.container}>
         <div className={styles.content}>
-          <header className={styles.header}>
-            <h2
-              className={styles.title}
-              id={`${id}-title`}
-            >
-              {title}
-            </h2>
+          <header
+            className={styles.header}
+            style={
+              title
+                ? { borderBottom: '1px solid var(--color-gray-light)' }
+                : { flexDirection: 'row-reverse' }
+            }
+          >
+            {title && (
+              <h2
+                className={styles.title}
+                id={`${id}-title`}
+              >
+                {title}
+              </h2>
+            )}
             <button
               className={styles.closeButton}
               type='button'
@@ -196,7 +209,7 @@ export function Modal({
 
           <div
             className={styles.body}
-            id={`${id}-content`}
+            id={id ? `${id}-content` : undefined}
           >
             {children}
           </div>

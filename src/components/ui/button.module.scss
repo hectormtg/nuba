@@ -1,50 +1,60 @@
-$borderRadius: 30px;
-$iconContainerSize: 47px;
+$borderRadius: 6px;
+$iconContainerSize: 40px;
 
 .button {
   position: relative;
   border-radius: $borderRadius;
-  padding: 1rem;
+  padding: 0.75rem;
   border: 1px solid var(--color-accent);
   cursor: pointer;
-  text-transform: uppercase;
   font-weight: 500;
   background-color: transparent;
-  color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: Poppins;
   font-size: 1rem;
+  transition: background-color 0.25s ease;
+  user-select: none;
+}
+
+.filled {
+  background-color: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+
+  &:hover {
+    background-color: hsl(from var(--color-accent) h s calc(l - 15));
+  }
 }
 
 .endIconButton {
-  padding-right: calc(#{$iconContainerSize} + 1rem);
+  padding-right: calc(#{$iconContainerSize} + 0.5rem);
   overflow: hidden;
 
   > span {
     z-index: 2;
   }
 
-  &::before {
-    pointer-events: none;
-    position: absolute;
-    content: '';
-    inset: 0;
-    background-color: var(--color-accent);
-    transform: translateX(100%);
-    border-radius: $borderRadius;
-    transition:
-      transform 0.3s ease-out,
-      border-radius 0.3s ease-out;
-  }
+  // &::before {
+  //   pointer-events: none;
+  //   position: absolute;
+  //   content: '';
+  //   inset: 0;
+  //   background-color: var(--color-accent);
+  //   transform: translateX(100%);
+  //   border-radius: $borderRadius;
+  //   transition:
+  //     transform 0.3s ease-out,
+  //     border-radius 0.3s ease-out;
+  // }
 
-  &:hover {
-    &::before {
-      transform: translateX(0);
-      border-radius: 0;
-    }
-  }
+  // &:hover {
+  //   &::before {
+  //     transform: translateX(0);
+  //     border-radius: 0;
+  //   }
+  // }
 }
 
 $iconSize: 20px;
@@ -52,14 +62,13 @@ $iconSize: 20px;
 .iconContainer {
   position: absolute;
   inset: 0 0 0 auto;
-  padding: 8px;
+  // padding: 8px;
   border-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text);
   fill: var(--color-text);
-  background-color: var(--color-accent);
   aspect-ratio: 1;
 
   svg {
