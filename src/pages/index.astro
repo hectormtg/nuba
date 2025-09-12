@@ -5,12 +5,13 @@ import Services from './services/services.astro'
 import Hero from './hero/hero.astro'
 import Contact from './contact/contact.astro'
 import Footer from './footer/footer.astro'
+import { SETTINGS } from '../constants/settings.constants'
 ---
 
 <Layout>
   <Hero />
   <About />
   <Services />
-  <Contact />
+  {!SETTINGS.EMAILS_DISABLED && <Contact />}
   <Footer />
 </Layout>

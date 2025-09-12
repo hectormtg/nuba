@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import styles from './hero.module.scss'
 import Button from '../../components/ui/button'
 import arrowIcon from '../../icons/arrow-right-icon.svg'
+import { SETTINGS } from '../../constants/settings.constants'
 ---
 
 <main class={styles.main}>
@@ -13,16 +14,20 @@ import arrowIcon from '../../icons/arrow-right-icon.svg'
       Especialistas en el diseño y ejecución de proyectos multidisciplinarios con innovación y
       precisión BIM.
     </p>
-    <Button
-      endIconSrc={arrowIcon.src}
-      style={{
-        fontSize: '1rem',
-      }}
-      id='contact-button'
-      client:load
-    >
-      Solicita una reunión
-    </Button>
+    {
+      !SETTINGS.EMAILS_DISABLED && (
+        <Button
+          endIconSrc={arrowIcon.src}
+          style={{
+            fontSize: '1rem',
+          }}
+          id='contact-button'
+          client:load
+        >
+          Solicita una reunión
+        </Button>
+      )
+    }
   </section>
 
   <div class={styles.bgMedia}></div>
