@@ -38,22 +38,4 @@ import ContactForm from './contact-form'
     }
   })
   if (container) observer.observe(container)
-
-  const button = document.getElementById('submit-button')
-  button?.addEventListener('click', async e => {
-    e.preventDefault()
-    try {
-      await fetch('/api/email', {
-        method: 'post',
-        body: JSON.stringify({
-          name: 'Hector',
-          email: 'jeje@mail.com',
-          subject: 'Testing',
-          message: 'Hellooooo testing',
-        }),
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  })
 </script>

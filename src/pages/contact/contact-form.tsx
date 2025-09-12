@@ -1,37 +1,33 @@
 'use client'
 
-import { useRef } from 'preact/hooks'
+import { actions } from 'astro:actions'
 import type { FormEvent, FormHTMLAttributes } from 'preact/compat'
-import Input from '../../components/ui/input'
+import { useRef } from 'preact/hooks'
 import Button from '../../components/ui/button'
+import Input from '../../components/ui/input'
 import sendIcon from '../../icons/send-icon.svg'
 
 const ContactForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
-  const payload = useRef({ name: '', email: '', subject: '', message: '' })
+  const payload = useRef<EmailPayload>({ name: '', email: '', subject: '', message: '' })
   const formRef = useRef<HTMLFormElement>(null)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     try {
-      const res = await fetch('/api/email', {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: payload.current.name,
-          email: payload.current.email,
-          subject: payload.current.subject,
-          message: payload.current.message,
-        }),
+      const { data, error } = await actions.sendEmail({
+        name: payload.current.name,
+        email: payload.current.email,
+        subject: payload.current.subject,
+        message: payload.current.message,
       })
-      if (res.status === 200) {
-        const inputs = formRef.current?.querySelectorAll('input')
-        const textareas = formRef.current?.querySelectorAll('textarea')
-        inputs?.forEach(input => (input.value = ''))
-        textareas?.forEach(input => (input.value = ''))
-      }
+      console.log('Data: ', data)
+      if (error) throw Error(error.message)
+      if (data.status !== 'success') throw Error('Error sending email')
+      const inputs = formRef.current?.querySelectorAll('input')
+      const textareas = formRef.current?.querySelectorAll('textarea')
+      inputs?.forEach(input => (input.value = ''))
+      textareas?.forEach(input => (input.value = ''))
     } catch (err) {
       console.error(err)
     }
