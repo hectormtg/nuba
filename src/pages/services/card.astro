@@ -1,8 +1,8 @@
 ---
-import styles from './services.module.scss'
-import type { ServiceCard } from '../../types/services.types'
 import { Icon as AstroIcon } from 'astro-icon/components'
 import clsx from 'clsx'
+import type { ServiceCard } from '../../types/services.types'
+import styles from './services.module.scss'
 
 interface Props {
   card: ServiceCard
@@ -11,8 +11,12 @@ interface Props {
 const { card } = Astro.props
 ---
 
-<div class={clsx(styles.card, 'fade-in-left-hidden')}>
-  <AstroIcon name={card.icon} />
-  <h4>{card.title}</h4>
-  <p>{card.description}</p>
-</div>
+{
+  card && (
+    <div class={clsx(styles.card, 'fade-in-left-hidden')}>
+      <AstroIcon name={card.icon} />
+      <h4>{card.title}</h4>
+      <p>{card.description}</p>
+    </div>
+  )
+}
