@@ -19,7 +19,7 @@ export const server = {
 
         const { data, error } = await resend.emails.send({
           from: 'Nuba Projects <info@nuba.pro>',
-          to: ['info@nuba.pro', 'hectormtg@gmail.com'],
+          to: ['ing.juanjonuba@gmail.com', 'hectormtg@gmail.com'],
           subject: `Inquiry from Nuba web site | ${name}`,
           html: `<div>
           <p>Client Name: <strong>${name}</strong></p>
