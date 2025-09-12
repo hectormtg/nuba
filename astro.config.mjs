@@ -9,6 +9,9 @@ import netlify from '@astrojs/netlify'
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
   integrations: [icon(), preact()],
-  adapter: netlify(),
+  adapter: netlify({
+    edgeMiddleware: true,
+  }),
 })
