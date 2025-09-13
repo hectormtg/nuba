@@ -1,4 +1,4 @@
 export const SETTINGS = {
-  MAINTENANCE_MODE: true,
-  EMAILS_DISABLED: true,
+  MAINTENANCE_MODE: false,
+  EMAILS_DISABLED: false,
 }
