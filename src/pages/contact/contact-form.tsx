@@ -5,8 +5,8 @@ import type { FormEvent, FormHTMLAttributes } from 'preact/compat'
 import { useRef, useState } from 'preact/hooks'
 import Button from '../../components/ui/button'
 import Input from '../../components/ui/input'
-import sendIcon from '../../icons/send-icon.svg'
 import { Modal } from '../../components/ui/modal'
+import sendIcon from '../../icons/send-icon.svg'
 import SuccessModal from './success-modal'
 
 const ContactForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
@@ -29,7 +29,6 @@ const ContactForm = (props: FormHTMLAttributes<HTMLFormElement>) => {
         subject: payload.current.subject,
         message: payload.current.message,
       })
-      console.log('Data: ', data)
       if (error) throw Error(error.message)
       if (data.status !== 'success') throw Error('Error sending email')
       const inputs = formRef.current?.querySelectorAll('input')
