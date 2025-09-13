@@ -23,3 +23,14 @@
     // background: var(--color-gray-light);
   }
 }
+
+.enabled {
+  &:focus,
+  &:hover {
+    border-color: var(--color-accent);
+  }
+
+  &:focus {
+    background-color: rgba(255, 255, 255, 1);
+  }
+}

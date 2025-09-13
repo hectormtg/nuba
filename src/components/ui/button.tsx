@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import type { ButtonHTMLAttributes, HTMLAttributes } from 'preact/compat'
 import styles from './button.module.scss'
 import Icon from './icon'
+import Spinner from './spinner'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement & HTMLAnchorElement> {
   loading?: boolean
@@ -36,11 +37,21 @@ const Button = ({ loading, endIconSrc, children, href, ...props }: Props) => {
         styles.button,
         styles.filled,
         endIconSrc && styles.endIconButton,
+        !props.disabled && !loading && styles.enabled,
         props.className
       )}
     >
       <span>{children}</span>
-      {endIconSrc && <div className={styles.iconContainer}>{<Icon src={endIconSrc} />}</div>}
+      {loading && (
+        <div className={styles.iconContainer}>
+          <Spinner />
+        </div>
+      )}
+      {endIconSrc && !loading && (
+        <div className={styles.iconContainer}>
+          <Icon src={endIconSrc} />
+        </div>
+      )}
     </button>
   )
 }

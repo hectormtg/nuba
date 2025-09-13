@@ -122,15 +122,6 @@ textarea {
   color: var(--color-text-contrast);
   resize: none;
   font-family: Poppins;
-
-  &:focus,
-  &:hover {
-    border-color: var(--color-accent);
-  }
-
-  &:focus {
-    background-color: rgba(255, 255, 255, 1);
-  }
 }
 
 .container {

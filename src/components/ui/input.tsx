@@ -11,7 +11,7 @@ const Input = ({ multiline, ...props }: Props) => {
     return (
       <textarea
         {...(props as HTMLAttributes<HTMLTextAreaElement>)}
-        className={clsx(styles.textarea, props.className)}
+        className={clsx(styles.textarea, !props.disabled && styles.enabled, props.className)}
       ></textarea>
     )
   }
@@ -19,6 +19,7 @@ const Input = ({ multiline, ...props }: Props) => {
   return (
     <input
       {...(props as HTMLAttributes<HTMLInputElement>)}
+      className={clsx(!props.disabled && styles.enabled, props.className)}
       type={props.type || 'text'}
     />
   )
